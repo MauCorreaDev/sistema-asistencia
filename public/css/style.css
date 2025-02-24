@@ -1,0 +1,165 @@
+/* public/css/style.css */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #f8f9fa;
+    margin: 0;
+  }
+  
+  /* Sidebar completo */
+  .sidebar {
+    background: #2E7D32;
+    min-height: 100vh;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    transition: width 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+  }
+  
+  /* Estado colapsado: solo iconos */
+  .sidebar.collapsed {
+    width: 80px;
+  }
+  .sidebar.collapsed .logo,
+  .sidebar.collapsed h4,
+  .sidebar.collapsed .search-box,
+  .sidebar.collapsed .link-text {
+    display: none;
+  }
+  
+  /* Logo con borde redondo */
+  .logo {
+    border-radius: 50%;
+    border: 2px solid #fff;
+    max-width: 80px;
+    margin: 0 auto;
+    display: block;
+    transition: max-width 0.3s ease;
+  }
+  
+  /* Título del sidebar */
+  .sidebar h4 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.2rem;
+  }
+  
+  /* Buscador */
+  .search-box {
+    padding: 15px;
+  }
+  .input-group .form-control {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+  .input-group-text {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: #fff;
+    color: #2E7D32;
+    border: none;
+  }
+  
+  /* Menú de navegación */
+  .sidebar ul.nav {
+    padding: 0;
+    margin: 0;
+  }
+  .sidebar ul.nav li {
+    list-style: none;
+  }
+  .sidebar ul.nav li a {
+    display: block;
+    padding: 10px 15px;
+    color: #fff;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .sidebar ul.nav li a:hover,
+  .sidebar ul.nav li a.active {
+    background: #26702c;
+  }
+  
+  /* Footer del sidebar */
+  .footer-link {
+    margin-top: auto;
+    padding: 15px;
+  }
+  
+  /* Área de contenido */
+  .content {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+    width: 100%;
+  }
+  .sidebar.collapsed ~ .content {
+    margin-left: 60px;
+  }
+  
+  /* Botón toggle para móvil (visible solo en móvil) */
+  .toggle-mobile {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-250px);
+    }
+    .sidebar.active {
+      transform: translateX(0);
+    }
+    .content {
+      margin-left: 0;
+    }
+    .toggle-mobile {
+      display: inline-block;
+    }
+  }
+  
+  /* Botón toggle para escritorio (visible solo en md y superiores) */
+  .toggle-desktop {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .toggle-desktop {
+      display: inline-block;
+    }
+  }
+  
+  /* Estilos para Cards (estilo iPhone) */
+  .card.custom-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border: none;
+  }
+  .card.custom-card .card-body {
+    display: flex;
+    align-items: center;
+  }
+  .card.custom-card .icon {
+    font-size: 2.5rem;
+    margin-right: 15px;
+  }
+  
+  /* Mejoras para el botón de cerrar (X) en móvil */
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #fff;
+    border: none;
+    color: #2E7D32;
+    font-size: 1.75rem;
+    border-radius: 50%;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .close-btn {
+      display: block;
+    }
+  }
+  
