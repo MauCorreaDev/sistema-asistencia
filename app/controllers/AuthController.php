@@ -5,7 +5,6 @@
 require_once __DIR__ . '/../../config/database.php';
 
 class AuthController {
-
     public function login() {
         session_start();
         // Verificar si se envió el formulario
@@ -21,12 +20,13 @@ class AuthController {
             $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
             
             if ($usuario) {
-                // Comprobar la contraseña (usamos MD5 para este ejemplo)
-                if ($usuario['contraseña'] == md5($contraseña)) {
+                // Comprobar la contraseña usando password_verify()
+                if (password_verify($contraseña, $usuario['contraseña'])) {
                     // Autenticación exitosa: guardar datos en la sesión
                     $_SESSION['usuario'] = [
                         'id' => $usuario['id'],
                         'nombre_usuario' => $usuario['nombre_usuario'],
+                        'nombre_completo' => $usuario['nombre_completo'], // Agregado
                         'rol' => $usuario['rol']
                     ];
                     
@@ -35,7 +35,7 @@ class AuthController {
                         header("Location: index.php?controller=Dashboard&action=index");
                         exit;
                     } else {
-                        header("Location: index.php?controller=Trabajador&action=index");
+                        header("Location: index.php?controller=Usuario&action=index");
                         exit;
                     }
                 } else {
@@ -59,4 +59,3 @@ class AuthController {
         exit;
     }
 }
-?>

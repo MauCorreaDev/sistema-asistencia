@@ -12,6 +12,7 @@ $controllerFile = __DIR__ . '/../app/controllers/' . $controllerName . '.php';
 if (file_exists($controllerFile)) {
     require_once $controllerFile;
     $obj = new $controllerName;
+
     if (method_exists($obj, $action)) {
         $obj->{$action}();
     } else {
@@ -20,4 +21,7 @@ if (file_exists($controllerFile)) {
 } else {
     echo "El controlador '$controllerName' no existe.";
 }
+
+
+
 ?>
