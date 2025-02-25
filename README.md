@@ -1,7 +1,5 @@
 📌 README.md para GitHub
-markdown
-Copiar
-Editar
+
 # 📋 Sistema de Asistencia - La Metalera
 
 ### 🏢 Aplicación web para la gestión de asistencia de trabajadores
@@ -36,9 +34,7 @@ cd sistema-asistencia
 🔧 2. Configurar la Base de Datos
 Importa el archivo database.sql en MySQL para crear las tablas necesarias.
 Configura la conexión en el archivo config/database.php:
-php
-Copiar
-Editar
+
 $host = 'localhost';
 $dbname = 'sistema_asistencia';
 $username = 'root';
@@ -46,9 +42,6 @@ $password = '';
 ▶️ 3. Iniciar el Servidor Local
 Si usas XAMPP, mueve el proyecto a htdocs y accede a:
 
-ruby
-Copiar
-Editar
 http://localhost/sistema-asistencia/public/index.php
 📌 Características Principales
 ✅ Login seguro con autenticación por rol (Administrador/Trabajador).
@@ -59,10 +52,8 @@ http://localhost/sistema-asistencia/public/index.php
 ✅ Panel de administración para gestionar trabajadores y asistencias.
 ✅ Interfaz responsiva y moderna con Bootstrap 5.
 
-📄 Estructura del Proyecto
-php
-Copiar
-Editar
+📄 Estructura del Proyecto php
+
 sistema-asistencia/
 │── app/
 │   ├── controllers/         # Controladores de la aplicación (Auth, Usuario, Reportes)
@@ -83,8 +74,7 @@ sistema-asistencia/
 Fork este repositorio.
 Crea una rama con tu mejora:
 bash
-Copiar
-Editar
+
 git checkout -b feature/nueva-funcionalidad
 Realiza cambios y haz un commit:
 bash
@@ -93,8 +83,7 @@ Editar
 git commit -m "Añadida nueva funcionalidad"
 Sube tus cambios:
 bash
-Copiar
-Editar
+
 git push origin feature/nueva-funcionalidad
 Abre un Pull Request en GitHub.
 📞 Contacto
@@ -106,19 +95,3 @@ Si encuentras algún error o tienes sugerencias, ¡no dudes en abrir un Issue en
 
 © 2025 La Metalera - Todos los derechos reservados.
 
-yaml
-Copiar
-Editar
-
----
-
-## 🎯 **¿Qué incluye este README?**
-✅ **Introducción clara y profesional**.  
-✅ **Instrucciones detalladas de instalación**.  
-✅ **Lista de tecnologías utilizadas**.  
-✅ **Características del sistema**.  
-✅ **Estructura del proyecto**.  
-✅ **Guía para contribuciones en GitHub**.  
-✅ **Contacto para soporte**.  
-
-¡Ahora puedes subirlo a GitHub y dejar tu repositorio bien documentado! 🚀💻
