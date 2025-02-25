@@ -73,19 +73,16 @@ sistema-asistencia/
 
 Fork este repositorio.
 Crea una rama con tu mejora:
-bash
 
 git checkout -b feature/nueva-funcionalidad
-Realiza cambios y haz un commit:
-bash
-Copiar
-Editar
-git commit -m "Añadida nueva funcionalidad"
-Sube tus cambios:
-bash
 
+Realiza cambios y haz un commit:
+git commit -m "Añadida nueva funcionalidad"
+
+Sube tus cambios:
 git push origin feature/nueva-funcionalidad
 Abre un Pull Request en GitHub.
+
 📞 Contacto
 👤 Desarrollador: Mauricio Correa
 📧 Email: maucorreadev@gmail.com 
