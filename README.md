@@ -88,8 +88,8 @@ git push origin feature/nueva-funcionalidad
 Abre un Pull Request en GitHub.
 📞 Contacto
 👤 Desarrollador: Mauricio Correa
-📧 Email: tuemail@example.com
-🔗 LinkedIn: linkedin.com/in/tuperfil
+📧 Email: maucorreadev@gmail.com 
+
 
 Si encuentras algún error o tienes sugerencias, ¡no dudes en abrir un Issue en el repositorio! 🚀
 
