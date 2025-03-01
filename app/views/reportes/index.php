@@ -6,15 +6,7 @@
         <input type="hidden" name="controller" value="Reportes">
         <input type="hidden" name="action" value="index">
         <div class="row">
-        <div class="col-md-3">
-            <label for="prefiltro" class="form-label">Pre Filtro</label>
-            <select class="form-select" id="prefiltro" name="prefiltro">
-            <option value="ninguno" <?= (isset($_GET['prefiltro']) && $_GET['prefiltro'] == 'ninguno') ? 'selected' : '' ?>>Sin Prefiltro</option>
-            <option value="este_mes" <?= (isset($_GET['prefiltro']) && $_GET['prefiltro'] == 'este_mes') ? 'selected' : '' ?>>Este Mes</option>
-            <option value="esta_semana" <?= (isset($_GET['prefiltro']) && $_GET['prefiltro'] == 'esta_semana') ? 'selected' : '' ?>>Esta Semana</option>
-            <option value="mes_anterior" <?= (isset($_GET['prefiltro']) && $_GET['prefiltro'] == 'mes_anterior') ? 'selected' : '' ?>>Mes Anterior</option>
-            </select>
-        </div>
+   
         <div class="col-md-3">
             <label for="empleado" class="form-label">Empleado</label>
             <select class="form-select" id="empleado" name="empleado">

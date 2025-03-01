@@ -12,6 +12,33 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* 🛠️ Ocultar textos cuando el sidebar está colapsado */
+    .sidebar.collapsed .link-text {
+      display: none;
+    }
+    .sidebar.collapsed {
+      width: 70px;
+    }
+    .sidebar.collapsed .nav-link {
+      text-align: center;
+      padding: 10px 0;
+    }
+    .sidebar.collapsed .nav-link i {
+      font-size: 1.5rem;
+    }
+    .sidebar.collapsed .logo-container {
+      display: flex;
+      justify-content: center;
+    }
+    .sidebar.collapsed .logo {
+      width: 50px;
+      height: 50px;
+    }
+    .sidebar.collapsed h4 {
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <div class="d-flex">
@@ -19,8 +46,9 @@
     <nav class="sidebar d-flex flex-column p-3">
       <!-- Botón de cerrar para móvil -->
       <button class="close-btn d-md-none" id="menu-close"><i class="fas fa-times"></i></button>
+      
       <div class="mb-4 text-center">
-        <img src="../public/img/logometalera.png" alt="Logo Empresa" class="logo img-fluid">
+        <img src="../public\img\logometalera.png" alt="Logo Empresa" class="logo img-fluid">
         <h4>Sistema de Asistencia</h4>
       </div>
       
@@ -30,13 +58,18 @@
             <i class="fas fa-home me-2"></i><span class="link-text">Dashboard</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link <?= (isset($active) && $active === 'perfil') ? 'active' : '' ?>" href="index.php?controller=Usuario&action=perfil">
+            <i class="fas fa-user"></i> <span class="link-text">Mi Perfil</span>
+          </a>
+        </li>
       </ul>
 
       <hr>
 
       <div class="footer-link">
         <a href="index.php?controller=Auth&action=logout" class="nav-link">
-          <i class="fas fa-sign-out-alt me-2"></i><span class="link-text">Cerrar Sesión</span>
+          <i class="fas fa-sign-out-alt me-2"></i> <span class="link-text">Cerrar Sesión</span>
         </a>
       </div>
     </nav>
@@ -45,11 +78,12 @@
     <div class="content">
       <!-- Navbar para móvil -->
       <nav class="navbar navbar-light bg-light d-md-none mb-3">
-        <div class="container-fluid">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
           <button class="toggle-mobile btn btn-outline-secondary" id="menu-toggle">
             <i class="fas fa-bars"></i>
           </button>
-        </div>
+          
+      
       </nav>
 
       <!-- Botón de colapso para escritorio -->
@@ -64,7 +98,6 @@
         <?= $content ?>
       </div>
 
-      <!-- Footer -->
       <footer class="bg-dark text-white text-center py-3 mt-4">
         <div class="container">
           <p class="mb-0">&copy; <?= date("Y") ?> La Metalera - Todos los derechos reservados</p>
