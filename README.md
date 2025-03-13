@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-📌 README.md para GitHub
+
 
 # 📋 Sistema de Asistencia - La Metalera
 
