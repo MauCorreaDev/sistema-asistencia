@@ -1,10 +1,11 @@
 <?php
+
 $title = "Dashboard - Sistema de Asistencia";
 ob_start();
 ?>
 <h1 class="mb-4 text-center">Sistema de Asistencias La Metalera</h1>
 
-<!-- 🚀 KPIs Principales -->
+<!-- ðŸš€ KPIs Principales -->
 <div class="row">
   <div class="col-md-6 col-lg-4 mb-4">
     <div class="card custom-card text-white bg-success">
@@ -50,26 +51,36 @@ ob_start();
       </div>
       <div class="card-body text-center">
         <div class="d-flex flex-wrap justify-content-center gap-3">
-          <?php foreach ($trabajadoresEnRuta as $trabajador): ?>
-            <div class="worker-container" data-bs-toggle="tooltip" data-bs-placement="top"
-                 title="<?= $trabajador['nombre_completo'] . ' - ' . $trabajador['marcado'] ?>">
-                <div class="worker-circle">
-                    <?php if (!empty($trabajador['foto_perfil'])): ?>
-                        <img src="uploads/usuarios/<?= $trabajador['foto_perfil'] ?>" alt="Foto de <?= $trabajador['nombre_completo'] ?>">
-                    <?php else: ?>
-                        <?= strtoupper(substr($trabajador['nombre_completo'], 0, 1)) ?>
-                    <?php endif; ?>
-                </div>
-                <span class="worker-name"><?= $trabajador['nombre_completo'] ?></span>
-            </div>
-          <?php endforeach; ?>
+          <?php if (!empty($trabajadoresEnRuta)): ?>
+            <?php   
+            
+              foreach ($trabajadoresEnRuta as $trabajador): 
+           
+              ?>
+              <div class="worker-container" data-bs-toggle="tooltip" data-bs-placement="top"
+                   title="<?= htmlspecialchars($trabajador['nombre_completo']) . ' - ' . htmlspecialchars($trabajador['marcado']) ?>">
+                  <div class="worker-circle">
+                      <?php if (!empty($trabajador['foto_perfil'])): ?>
+                          <img src="uploads/usuarios/<?= htmlspecialchars($trabajador['foto_perfil']) ?>" alt="Foto de <?= htmlspecialchars($trabajador['nombre_completo']) ?>">
+                      <?php else: ?>
+                          <?= strtoupper(substr(htmlspecialchars($trabajador['nombre_completo']), 0, 1)) ?>
+                      <?php endif; ?>
+                  </div>
+                  <span class="worker-name"><?= htmlspecialchars($trabajador['nombre_completo']) ?></span>
+              </div>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <p class="text-muted">No hay trabajadores asignados para hoy.</p>
+          <?php endif; ?>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- 🔥 Ranking de Asistencia Mensual -->
+
+
+<!-- ðŸ”¥ Ranking de Asistencia Mensual -->
 <div class="row mt-4">
   <div class="col-12">
     <div class="card custom-card bg-light shadow-sm">
@@ -80,7 +91,7 @@ ob_start();
         <div class="d-flex flex-wrap justify-content-center gap-3">
           <?php foreach ($rankingAsistencias as $trabajador): ?>
             <div class="worker-container" data-bs-toggle="tooltip" data-bs-placement="top"
-                 title="<?= $trabajador['nombre_completo'] ?> - <?= $trabajador['dias_trabajados'] ?> días">
+                 title="<?= $trabajador['nombre_completo'] ?> - <?= $trabajador['dias_trabajados'] ?> dias">
                 <div class="worker-circle">
                     <?php if (!empty($trabajador['foto_perfil'])): ?>
                         <img src="uploads/usuarios/<?= $trabajador['foto_perfil'] ?>" alt="Foto de <?= $trabajador['nombre_completo'] ?>">
@@ -89,7 +100,7 @@ ob_start();
                     <?php endif; ?>
                 </div>
                 <span class="worker-name"><?= $trabajador['nombre_completo'] ?></span>
-                <span class="worker-days text-muted"><?= $trabajador['dias_trabajados'] ?> días</span>
+                <span class="worker-days text-muted"><?= $trabajador['dias_trabajados'] ?> dias</span>
             </div>
           <?php endforeach; ?>
         </div>
@@ -98,7 +109,7 @@ ob_start();
   </div>
 </div>
 
-<!-- 📌 Scripts -->
+<!-- ðŸ“Œ Scripts -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -108,15 +119,15 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<!-- 📌 Estilos Mejorados -->
+<!-- ðŸ“Œ Estilos Mejorados -->
 <style>
-/* 🔹 Contenedor de Trabajadores */
+/* ðŸ”¹ Contenedor de Trabajadores */
 .worker-container {
     text-align: center;
     width: 90px;
 }
 
-/* 🔹 Círculos de Trabajadores */
+/* ðŸ”¹ CÃ­rculos de Trabajadores */
 .worker-circle {
     width: 70px;
     height: 70px;
@@ -144,12 +155,12 @@ document.addEventListener("DOMContentLoaded", function() {
     object-fit: cover;
 }
 
-/* 🔹 Hover en Círculos */
+/* ðŸ”¹ Hover en CÃ­rculos */
 .worker-circle:hover {
     background-color: #0056b3;
 }
 
-/* 🔹 Nombre del Trabajador */
+/* ðŸ”¹ Nombre del Trabajador */
 .worker-name {
     display: block;
     font-size: 12px;
@@ -157,14 +168,14 @@ document.addEventListener("DOMContentLoaded", function() {
     color: #333;
 }
 
-/* 🔹 Días Trabajados */
+/* ðŸ”¹ DÃ­as Trabajados */
 .worker-days {
     display: block;
     font-size: 12px;
     color: #6c757d;
 }
 
-/* 📱 Responsive Mejorado */
+/* ðŸ“± Responsive Mejorado */
 @media (max-width: 768px) {
     .worker-circle {
         width: 60px;

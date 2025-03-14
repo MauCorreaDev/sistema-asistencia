@@ -1,5 +1,6 @@
 <?php
-// public/index.php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // Un enrutador muy básico basado en query strings
 $controller = isset($_GET['controller']) ? $_GET['controller'] : 'Auth';
@@ -7,7 +8,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : 'login';
 
 // Construir el nombre del controlador (asumimos que el controlador existe en app/controllers)
 $controllerName = $controller . 'Controller';
-$controllerFile = __DIR__ . '/../app/controllers/' . $controllerName . '.php';
+$controllerFile = __DIR__ . '/app/controllers/' . $controllerName . '.php';
 
 if (file_exists($controllerFile)) {
     require_once $controllerFile;

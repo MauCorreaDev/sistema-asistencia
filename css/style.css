@@ -162,4 +162,34 @@ body {
       display: block;
     }
   }
-  
+
+
+/* Ajuste del autocompletado para que esté SIEMPRE visible */
+.ui-autocomplete {
+  position: absolute !important; /* Asegura que no sea relativo a otros elementos */
+  z-index: 99999 !important; /* Prioridad máxima */
+  background: white; /* Fondo blanco para que sea visible */
+  border: 1px solid #ddd; /* Borde sutil */
+  max-height: 250px; /* Límite de altura */
+  overflow-y: auto; /* Scroll si hay muchas opciones */
+  font-size: 14px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Ajuste para elementos del menú */
+.ui-menu-item {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.ui-menu-item:last-child {
+  border-bottom: none;
+}
+
+/* Hover para resaltar la opción */
+.ui-menu-item:hover {
+  background: #007bff;
+  color: white;
+}

@@ -10,8 +10,8 @@ class AuthController {
         // Verificar si se envió el formulario
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Obtener y sanitizar datos
-            $nombre_usuario = filter_input(INPUT_POST, 'nombre_usuario', FILTER_SANITIZE_STRING);
-            $contraseña = filter_input(INPUT_POST, 'contraseña', FILTER_SANITIZE_STRING);
+            $nombre_usuario = filter_input(INPUT_POST, 'nombre_usuario');
+            $contraseña = filter_input(INPUT_POST, 'contraseña');
             
             // Consultar la base de datos para obtener el usuario
             global $pdo;

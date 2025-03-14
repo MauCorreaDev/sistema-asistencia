@@ -12,6 +12,21 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
+  <!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<!-- jQuery (necesario para DataTables) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<!-- DataTables Buttons -->
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css">
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
 </head>
 <body>
   <div class="d-flex">
@@ -20,15 +35,16 @@
       <!-- Botón de cerrar para móvil -->
       <button class="close-btn d-md-none" id="menu-close"><i class="fas fa-times"></i></button>
       <div class="mb-4 text-center">
-        <img src="../public\img\logometalera.png" alt="Logo Empresa" class="logo img-fluid">
+        <img src="img\logometalera.png" alt="Logo Empresa" class="logo img-fluid">
         <h4>Sistema de Asistencia (Prueba)</h4>
       </div>
       <div class="search-box">
-        <div class="input-group">
-          <span class="input-group-text"><i class="fas fa-search"></i></span>
-          <input type="text" class="form-control" placeholder="Buscar usuario...">
-        </div>
-      </div>
+    <div class="input-group">
+        <span class="input-group-text"><i class="fas fa-search"></i></span>
+        <input type="text" id="searchWorker" class="form-control" placeholder="Buscar trabajador...">
+    </div>
+</div>
+
       <ul class="nav nav-pills flex-column">
   <li class="nav-item">
     <a href="index.php?controller=Dashboard&action=index" class="nav-link <?= (isset($active) && $active === 'dashboard') ? 'active' : '' ?>">
@@ -126,5 +142,50 @@
       });
     }
   </script>
+  <!-- jQuery UI (para autocompletar) -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+$(document).ready(function(){
+    $("#searchWorker").autocomplete({
+        source: function(request, response) {
+            $.ajax({
+                url: "index.php?controller=Trabajador&action=buscar",
+                dataType: "json",
+                data: { term: request.term },
+                success: function(data) {
+                    response($.map(data, function(item) {
+                        return {
+                            label: item.nombre_completo,
+                            value: item.nombre_completo,
+                            id: item.id
+                        };
+                    }));
+                }
+            });
+        },
+        minLength: 2,
+        select: function(event, ui) {
+            window.location.href = "index.php?controller=Reportes&action=index&empleado=" + ui.item.id;
+        },
+        open: function(event, ui) {
+            var autocomplete = $(".ui-autocomplete");
+            var inputOffset = $("#searchWorker").offset();
+            
+            // 🔥 Ajustamos la posición del autocompletado
+            autocomplete.css({
+                position: "fixed", // 🔥 Fijamos la posición en la pantalla
+                top: inputOffset.top + $("#searchWorker").outerHeight() - $(window).scrollTop() + "px",
+                left: inputOffset.left + "px",
+                width: $("#searchWorker").outerWidth() + "px",
+                zIndex: 99999 // 🔥 Aseguramos que esté sobre todo
+            });
+        }
+    });
+});
+
+</script>
+
 </body>
 </html>

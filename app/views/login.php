@@ -10,7 +10,7 @@
   <!-- Google Fonts (Roboto) -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
   <!-- Estilos personalizados -->
-  <link href="../public/css/style.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
   <style>
     /* public/css/style.css */
 body {
@@ -92,7 +92,7 @@ body {
 <body>
   <div class="login-card">
     <div class="card-header">
-      <img src="../public/img/logometalera.png" alt="Logo Empresa" class="logo">
+      <img src="img/logometalera.png" alt="Logo Empresa" class="logo">
       <h2>Iniciar Sesión</h2>
     </div>
     <div class="card-body">

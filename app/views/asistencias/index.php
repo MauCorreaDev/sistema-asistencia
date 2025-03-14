@@ -1,11 +1,12 @@
 <div class="container-fluid">
   <h1 class="mb-4">Gestión de Asistencias</h1>
-  <!-- Botón para agregar asistencia que abrirá un modal -->
+  
+  <!-- Botón para agregar asistencia -->
   <button class="btn btn-primary mb-3" id="btnAddAsistencia">
     <i class="fas fa-plus"></i> Agregar Asistencia
   </button>
-  
-  <!-- Contenedor responsive para la tabla -->
+
+  <!-- Contenedor de la tabla -->
   <div class="table-responsive">
     <table class="table table-bordered table-striped" id="asistenciasTable">
       <thead>
@@ -27,8 +28,8 @@
             <td><?= htmlspecialchars($asistencia['nombre_completo']) ?></td>
             <td><?= date("d-m-y", strtotime($asistencia['fecha'])) ?></td>
             <td><?= htmlspecialchars($asistencia['hora_ingreso']) ?></td>
-            <td><?= htmlspecialchars($asistencia['hora_salida']) ?></td>
-            <td><?= htmlspecialchars($asistencia['horas_trabajadas']) ?></td>
+            <td><?= htmlspecialchars($asistencia['hora_salida'] ?? '') ?></td>
+            <td><?= htmlspecialchars($asistencia['horas_trabajadas'] ?? '') ?></td>
             <td><?= "$" . number_format($asistencia['pago_dia'], 0, ",", ".") ?></td>
             <td>
                <button class="btn btn-sm btn-warning btn-edit" data-id="<?= $asistencia['id'] ?>">
@@ -60,11 +61,33 @@
   </div>
 </div>
 
-<!-- jQuery (para AJAX) -->
+<!-- jQuery y DataTables -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
 <script>
 $(document).ready(function(){
-    // Abrir modal para agregar asistencia
+    // **Inicializar DataTable sin botones de exportación**
+    $('#asistenciasTable').DataTable({
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por página",
+            "zeroRecords": "No se encontraron registros",
+            "info": "Mostrando página _PAGE_ de _PAGES_",
+            "infoEmpty": "No hay registros disponibles",
+            "infoFiltered": "(filtrado de _MAX_ registros en total)",
+            "search": "Buscar:",
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            }
+        },
+        "pageLength": 10,  
+        "order": [[2, "desc"]] // Ordenar por fecha de manera descendente
+    });
+
+    // **Abrir modal para agregar asistencia**
     $("#btnAddAsistencia").click(function(){
        $("#asistenciaModalLabel").text("Agregar Asistencia");
        $.ajax({
@@ -76,8 +99,8 @@ $(document).ready(function(){
           }
        });
     });
-    
-    // Abrir modal para editar asistencia
+
+    // **Abrir modal para editar asistencia**
     $(".btn-edit").click(function(){
        var asistenciaId = $(this).data("id");
        $("#asistenciaModalLabel").text("Editar Asistencia");
@@ -90,8 +113,8 @@ $(document).ready(function(){
           }
        });
     });
-    
-    // Eliminar asistencia vía AJAX
+
+    // **Eliminar asistencia vía AJAX**
     $(".btn-delete").click(function(){
        if(confirm("¿Estás seguro de eliminar esta asistencia?")){
           var asistenciaId = $(this).data("id");
@@ -103,29 +126,6 @@ $(document).ready(function(){
              }
           });
        }
-    });
-    
-    // Envío del formulario vía AJAX
-    $(document).on("submit", "#asistenciaForm", function(e){
-       e.preventDefault();
-       var form = $(this);
-       $.ajax({
-          url: form.attr("action"),
-          type: "POST",
-          data: form.serialize(),
-          success: function(response){
-             console.log("Respuesta:", response);
-             if(response.trim() === "success"){
-                $("#asistenciaModal").modal("hide");
-                location.reload();
-             } else {
-                alert("Error al guardar: " + response);
-             }
-          },
-          error: function(){
-             alert("Error en la petición AJAX.");
-          }
-       });
     });
 });
 </script>

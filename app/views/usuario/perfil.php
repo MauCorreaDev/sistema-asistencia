@@ -24,9 +24,11 @@
                     <div class="col-md-4 text-center">
                         <label for="fotoPerfil" class="profile-pic-label">
                             <?php if (!empty($usuario['foto_perfil'])): ?>
-                                <img id="previewFoto" class="profile-pic"
-                                    src="uploads/usuarios/<?= $usuario['foto_perfil'] ?>" 
-                                    alt="Foto de Perfil">
+                           <img id="previewFoto" class="profile-pic"
+    src="uploads/usuarios/<?= htmlspecialchars($usuario['foto_perfil']) ?>?v=<?= time() ?>" 
+    alt="Foto de Perfil">
+
+
                             <?php else: ?>
                                 <i class="fas fa-user-circle profile-icon"></i> 
                             <?php endif; ?>

@@ -48,7 +48,7 @@
       <button class="close-btn d-md-none" id="menu-close"><i class="fas fa-times"></i></button>
       
       <div class="mb-4 text-center">
-        <img src="../public\img\logometalera.png" alt="Logo Empresa" class="logo img-fluid">
+        <img src="..\img\logometalera.png" alt="Logo Empresa" class="logo img-fluid">
         <h4>Sistema de Asistencia</h4>
       </div>
       

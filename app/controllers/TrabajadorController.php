@@ -13,6 +13,7 @@ $active = 'trabajadores';
 
 
 class TrabajadorController {
+    
     public function index() {
         global $pdo;
         $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE rol = 'trabajador' ORDER BY id DESC");
@@ -24,7 +25,17 @@ class TrabajadorController {
         $content = ob_get_clean();
         include __DIR__ . '/../views/layout.php';
     }
-    
+    public function buscar() {
+        global $pdo;
+
+        $term = isset($_GET['term']) ? $_GET['term'] : '';
+        $stmt = $pdo->prepare("SELECT id, nombre_completo FROM usuarios WHERE rol = 'trabajador' AND nombre_completo LIKE :term LIMIT 10");
+        $stmt->execute(['term' => "%$term%"]);
+        $trabajadores = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        echo json_encode($trabajadores);
+        exit;
+    }
     public function create() {
         $title = "Agregar Trabajador";
         $worker = null; // no hay datos
